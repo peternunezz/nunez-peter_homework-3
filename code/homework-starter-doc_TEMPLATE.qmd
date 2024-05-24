@@ -9,7 +9,7 @@ execute: # for all code chunks
 ---
 
 **WARNING:** this document provides the foundation for your homework 3, but you will need to create your own neat, organized document to render for your homework submission. Create a new document for your homework in the `code` folder of this repository.   
-
+knj
 **You will not need all the information in this document to do your homework; IT IS YOUR JOB TO EDIT THE INFORMATION IN YOUR HOMEWORK DOCUMENT TO ONLY INCLUDE WHAT IS NECESSARY.**    
 
 **Relevant definitions:**  
