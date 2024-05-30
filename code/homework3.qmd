@@ -82,12 +82,15 @@ model_predictions <- ggpredict(model4,
 plot(model_preds, # model predictions
      limit_range = TRUE, # limit the range of predictions to the range of predictor values
      show_data = TRUE) + # show the underlying data
-  # everything below this is ggplot() stuff
+   facet_wrap(~group) +
   theme_classic() + # classic theme
-  labs(title = "Preliminary model visualization") + # plot title
-  theme(panel.grid = element_blank()) # getting rid of gridlines
+  theme(legend.position = "none") +
+  labs(title = "Model 4 visualization") + # plot title
+  theme(panel.grid = element_blank()) + 
+  scale_color_manual(values = c("red", "blue", "green", "purple", "pink", "orange", "yellow")) 
 ```
 **#COME BACK TO THIS**
+  custom_colors <- c("A", "B", "C", "D", "E", "F", "G")
 
 :::{.callout-note}
 Make sure that the only output is the visualization!
@@ -95,7 +98,7 @@ Make sure that the only output is the visualization!
 
 #### d. Write a caption for your visualization. (6 points)  
 
-Include a data citation.    
+
 
 #### e. Write a 3-4 sentence results section. (10 points)
 
