@@ -32,14 +32,15 @@ Use the information from the `homework-starter-doc.qmd` to do this problem.
 
 #### a. Make a table _or_ list of all the models from class and the last one you constructed on your own. Write a caption for your table. (8 points)  
 
-**Caption: Table 1:Comparing 5 models that describe total biomass. The table is comparing how well each model and it's variables describes total biomass. Model 4 best describes total biomass because it has the lowest AIC, and conforms to assumptions of linear models. ** table captions typically go above the table. Number the table and provide a title. Describe what is in the table (columns and rows).  
+**Caption: Table 1:Comparing 5 models that describe total biomass. The table is comparing how well each model and it's variables describes total biomass. Model 4 best describes total biomass because it has the lowest AIC, and conforms to assumptions of linear models. ** 
+table captions typically go above the table. Number the table and provide a title. Describe what is in the table (columns and rows).  
 
 ```{r model-selection}
 model.sel(model0,
           model1, 
           model2, 
           model3,
-          model4)
+          model4).     #comparing the 4 models to find the one that best predicts total biomass using an Akaike Information Criterion table
 ```
 
 **Table:** In your table, each row should be a model with the model number (1, 2, 3, etc.) and the predictors for each model.  
@@ -50,12 +51,6 @@ There should be 5 models total (null model + 4 models with predictors).
 :::
 
 #### b. Write a 5-6 sentence "statistical methods" section. (8 points)
-
-Your answer should be in paragraph form and include:  
-
-- how you addressed the central question(s) (i.e. to examine the influence of ____, ____, and ____ on _____, I...)  
-- how you chose the final model (i.e. to determine the model that best described ____, I...)  
-- how you visually determined that your final model conformed to the assumptions of a linear model (i.e. to evaluate linear model assumptions, I...)  
 
 **To examine how specific leaf area, water treatment, and species influences total biomass, I first plotted how each variable indivudlally affected total biomass. From this initial analysis, I determined that SLA, water treatment, and species all have some effect on total biomass. I then created 5 models; one null model(no variables considered), one saturated model(all three varibale considered), and three model with two of the three variables considered. To determine the model that best described total biomass, I compared all 5 models using an AIC (Akaike Information Criterion) table. From this table, I chose the final model to be Model 4 (the model that analyzed total biomass as a function of water treatment and species) because it had the lowest AIC (-156). To evaluate the linear model assumptions, I looked at the diagnostic plots and concluded that this model adequetly follows the linear model assumptions.   **
 
@@ -73,21 +68,21 @@ Show and annotate all your code. For full credit:
 - finalize the plot  
 
 ```{r model predictions}
-model_predictions <- ggpredict(model4, 
+model_predictions <- ggpredict(model4,  #view the predictions as a data frame
                          terms = c("water_treatment", 
-                                   "species_name"))
+                                   "species_name"))   #specifing what terms we want in the plot
 ```
 
 ```{r model predictions plot}
 plot(model_preds, # model predictions
      limit_range = TRUE, # limit the range of predictions to the range of predictor values
      show_data = TRUE) + # show the underlying data
-   facet_wrap(~group) +
+   facet_wrap(~group) + #grouped the plot by species
   theme_classic() + # classic theme
-  theme(legend.position = "none") +
+  theme(legend.position = "none") + #removing the legend
   labs(title = "Model 4 visualization") + # plot title
-  theme(panel.grid = element_blank()) + 
-  scale_color_manual(values = c("red", "blue", "green", "purple", "pink", "orange", "yellow")) 
+  theme(panel.grid = element_blank()) +   #removing the gridlines
+  scale_color_manual(values = c("red", "blue", "darkgreen", "purple", "pink", "orange", "gray")) #using colors that aren't default ggplot colors
 ```
 **#COME BACK TO THIS**
   custom_colors <- c("A", "B", "C", "D", "E", "F", "G")
@@ -114,15 +109,11 @@ In this problem, you will create an **affective visualization** using your perso
 
 In lecture, we talked about the three vertices of data visualization: 1) exploratory, 2) affective, and 3) communicative. We've done a lot of exploratory and communicative visualization, but have yet to think about affective visualization.  
 
-When thinking of affective visualization, you can expand your ideas of what data visualization _could_ be. Some examples of affective visualizations include:  
-
-- [Jill Pelto's paintings](https://www.jillpelto.com/gallery-1)  
-- [Lorraine Woodruff-Long's warming strips quilt ](https://www.instagram.com/p/C689Kybxget/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)  
-- [Stefanie Posavec and Giorgia Lupi's Dear Data project](https://www.dear-data.com/all)  
-
 **Before starting, update your spreadsheet of observations.**  
 
 #### a. Describe in words what an affective visualization could look like for your personal data (3-5 sentences). (2 points)
+
+**My affective visualization for my personal data could function as a psuedo tile plot. I would lay out all of my clothes, organized by their color. Meaning that they would be organized in rows, and grouped by color. I would then take a video of the clothes layed out on the floor, for a visualization of the diversity of color in my closet.  **
 
 #### b. Create a sketch (on paper) of your idea. (2 points)  
 
@@ -132,7 +123,6 @@ Include a photo of this sketch in your submission.
 
 Feel free to be creative with this! _You do not have to do this in R._ You could create a sculpture, painting, textile object, etc.  
 
-If you are making your visualization in R, show the annotated code and the output.  
 
 If you are making your visualization outside of R, include a photo of your visualization in your submission.  
 
@@ -144,6 +134,8 @@ An artist statement gives the audience context to understand your work. Write 4-
 - the influences (what did techniques/artists/etc. did you find influential in creating your work?)  
 - the form of your work (written code, watercolor, oil painting, etc.)  
 - your process (how did you create your work?)  
+
+**For this affective visualization, I aimed to show the diversity of color in the clothes from my closet through a psuedo tile plot. My inspiration for this visualization was to do something fun and personal to me, and to take the idea of a tile plot and make it my own. I chose this project to get a sense of what colors I typically like to wear, and what factors influence these microdecisions. Since coming to University, fashion has been a method of creativity and expression, and I chose this as my project to combine statistics with this passion of mine. I chose this format of visualization to see the diversity in a real life medium, all layed out in front of me. I often forget about clothes in my closet, so doing this visualization reminded me of pieces I love, but don't wear often. My process involved picking my favorite pieces of each color, and laying them out in a color scheme that flowed. I then took a video going across the rows, and took pictures of the tile plot in it's entirety. My space to lay out the clothes was limited, or I would have included even more clothes.**
 
 
 
