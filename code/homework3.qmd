@@ -34,13 +34,22 @@ Use the information from the `homework-starter-doc.qmd` to do this problem.
 
 **Caption: Table 1:Comparing 5 models that describe total biomass. The table is comparing how well each model and it's variables describes total biomass. Model 4 best describes total biomass because it has the lowest AIC, and conforms to assumptions of linear models. ** 
 table captions typically go above the table. Number the table and provide a title. Describe what is in the table (columns and rows).  
+```{r model selection}
+model4 <- lm(total_g ~ water_treatment + species_name,
+             data = drought_exp_clean)
+
+par(mfrow = c(2, 2))
+plot(model1)
+
+```
+
 
 ```{r model-selection}
 model.sel(model0,
           model1, 
           model2, 
           model3,
-          model4).     #comparing the 4 models to find the one that best predicts total biomass using an Akaike Information Criterion table
+          model4)     #comparing the 4 models to find the one that best predicts total biomass using an Akaike Information Criterion table
 ```
 
 **Table:** In your table, each row should be a model with the model number (1, 2, 3, etc.) and the predictors for each model.  
@@ -74,7 +83,7 @@ model_predictions <- ggpredict(model4,  #view the predictions as a data frame
 ```
 
 ```{r model predictions plot}
-plot(model_preds, # model predictions
+plot(model_predictions, # model predictions
      limit_range = TRUE, # limit the range of predictions to the range of predictor values
      show_data = TRUE) + # show the underlying data
    facet_wrap(~group) + #grouped the plot by species
