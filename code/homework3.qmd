@@ -9,8 +9,6 @@ markdown:
 ---
 
 
-
-
 https://github.com/peternunezz/nunez-peter_homework-3.git
 
 RStudio/code steps:  
